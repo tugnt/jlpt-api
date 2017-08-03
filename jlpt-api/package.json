@@ -1,0 +1,31 @@
+{
+  "name": "jlpt-api",
+  "version": "1.0.0",
+  "description": "This project create api for JLPT App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tugnt/jlpt-api.git"
+  },
+  "keywords": [
+    "RestAPI",
+    "JLPT"
+  ],
+  "author": "tugnt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tugnt/jlpt-api/issues"
+  },
+  "homepage": "https://github.com/tugnt/jlpt-api#readme",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.5"
+  }
+}
