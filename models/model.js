@@ -8,10 +8,13 @@ var TipSchema = new Schema({
   title: String,
   type: {
     type: String,
-    enum : ['Reading', 'Listening', 'Grammar', 'Vocabulary']
+    enum: ['Reading', 'Listening', 'Grammar', 'Vocabulary']
   },
-  question:[{
-    stt: Number,
+  question: [{
+    stt: {
+      type: Number,
+      default: 1
+    },
     question: String,
     answerA: String,
     answerB: String,
@@ -21,7 +24,27 @@ var TipSchema = new Schema({
       type: String,
       default: ''
     },
-    solution: Number
+    solution: String
   }]
 });
+
+var QuestionSchema = new Schema({
+  unit: String,
+  type: {
+    type: String,
+    enum: ['Reading', 'Listening', 'Grammar', 'Vocabulary']
+  },
+  level: Number,
+  question: String,
+  answerA: String,
+  answerB: String,
+  answerC: String,
+  answerD: String,
+  linkAudio: {
+    type: String,
+    default: ''
+  },
+  solution: String,
+});
+module.exports = mongoose.model('Question', QuestionSchema);
 module.exports = mongoose.model('Tips', TipSchema);

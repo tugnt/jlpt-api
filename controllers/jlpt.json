@@ -5255,20 +5255,7 @@
         "Deso" : "11",
         "STT" : "32"
       } ],
-      "choukai" : {
-        "bai1" : {
-          "kaito" : {
-            "cau 1 " : "cau 1"
-          },
-          "question" : {
-            "cau 1 " : "cau 1",
-            "question1" : {
-              "ans1" : "ans_A",
-              "question" : "content"
-            }
-          }
-        }
-      },
+      "choukai" : [],
       "dokkai" : [ {
         "A" : "(A) その多くは、文字を読むのがきらいなこども向けに作られている。\r\n",
         "B" : "  (B) まんがで勉強する大人はいないので、大人向けのものはない。",
