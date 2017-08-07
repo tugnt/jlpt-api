@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var Tips = mongoose.model('Tips');
+var Question = mongoose.model('Question');
 var parse = require('./parseData.js');
 var fs = require('fs');
 
@@ -29,7 +30,7 @@ function firstToUpperCase(str) {
   return str.substr(0, 1).toUpperCase() + str.substr(1);
 }
 
-exports.show_question_tips = function(req, res) {
+exports.show_question_of_tips = function(req, res) {
   Tips.findById(req.params.id, function(err, questions) {
     if (err) {
       res.send(err);
@@ -38,34 +39,64 @@ exports.show_question_tips = function(req, res) {
   });
 };
 
-// exports.add_question = function(req, res) {
-//   parse.grammarQuestionAddN1();
-//   parse.readingQuestionAddN1();
-//   parse.listeningQuestionAddN1();
-//   parse.vocabularyQuestionAddN1();
-//
-//
-//   parse.grammarQuestionAddN2();
-//   parse.readingQuestionAddN2();
-//   parse.listeningQuestionAddN2();
-//   parse.vocabularyQuestionAddN2();
-//
-//
-//   parse.grammarQuestionAddN3();
-//   parse.readingQuestionAddN3();
-//   parse.listeningQuestionAddN3();
-//   parse.vocabularyQuestionAddN3();
-//
-//
-//   parse.grammarQuestionAddN4();
-//   parse.readingQuestionAddN4();
-//   parse.listeningQuestionAddN4();
-//   parse.vocabularyQuestionAddN4();
-//
-//
-//   parse.grammarQuestionAddN5();
-//   parse.readingQuestionAddN5();
-//   parse.listeningQuestionAddN5();
-//   parse.vocabularyQuestionAddN5();
-//   console.log('OK');
-// }
+// Show list question have contain field type
+//and level match with query
+exports.show_question_type_of_level = function(req, res){
+  var type = firstToUpperCase(req.params.type);
+  var level = req.params.level;
+  var unit = req.params.unit;
+  var query = Question.find({
+    level: level,
+    type: type,
+    unit: unit
+  });
+  query.exec(function(error, data){
+    if(error){
+      res.send(error);
+    }
+      res.json(data);
+  })
+}
+
+exports.show_list_unit = function(req, res){
+  var type = firstToUpperCase(req.params.type);
+  var level = req.params.level;
+  var unit = req.params.unit;
+  Question.find({
+    level: level,
+    type: type
+  }).distinct('unit').exec(function(error, data){
+    if (error) {
+      res.send(error);
+    }
+      res.json(data);
+  });
+}
+
+exports.add_question = function(req, res) {
+  parse.grammarQuestionAddN1();
+  parse.readingQuestionAddN1();
+  parse.listeningQuestionAddN1();
+  parse.vocabularyQuestionAddN1();
+
+  parse.grammarQuestionAddN2();
+  parse.readingQuestionAddN2();
+  parse.listeningQuestionAddN2();
+  parse.vocabularyQuestionAddN2();
+
+  parse.grammarQuestionAddN3();
+  parse.readingQuestionAddN3();
+  parse.listeningQuestionAddN3();
+  parse.vocabularyQuestionAddN3();
+
+  parse.grammarQuestionAddN4();
+  parse.readingQuestionAddN4();
+  parse.listeningQuestionAddN4();
+  parse.vocabularyQuestionAddN4();
+
+  parse.grammarQuestionAddN5();
+  parse.readingQuestionAddN5();
+  parse.listeningQuestionAddN5();
+  parse.vocabularyQuestionAddN5();
+  console.log('OK');
+}
